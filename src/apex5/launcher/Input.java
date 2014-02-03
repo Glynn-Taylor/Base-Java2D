@@ -10,8 +10,7 @@ import javax.swing.JFrame;
 import apex5.states.State;
 
 public class Input extends JFrame implements WindowListener, KeyListener{
-	protected State CurrentState;
-	protected State PreviousState=null;
+	protected StatePanel StateHandler;
 	protected boolean[] keys = new boolean[65536];
 	@Override
 	public void windowOpened(WindowEvent e) {
@@ -39,14 +38,14 @@ public class Input extends JFrame implements WindowListener, KeyListener{
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		CurrentState.requestFocus();
+		StateHandler.requestFocus();
 		
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		CurrentState.requestFocus();
+		StateHandler.requestFocus();
 	}
 
 	@Override

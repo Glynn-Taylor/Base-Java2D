@@ -20,7 +20,7 @@ public class GameState extends GraphicalState {
 	Font StandardFont = new Font("SansSerif", Font.PLAIN, 13);
 
 	@Override
-	protected void Render() {
+	public void Render() {
 
 		FillBackground(Color.black);
 		
@@ -33,7 +33,8 @@ public class GameState extends GraphicalState {
 	
 
 	@Override
-	protected void Update() {
+	public void Update() {
+		
 		if (Launcher.Window.IsKeyDown(KeyEvent.VK_W))
 			MoveableSquare.Move(0, -1);
 		

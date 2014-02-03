@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 
 import user.states.GameState;
 import apex5.launcher.Input;
+import apex5.launcher.StatePanel;
 
 public class Launcher extends Input {
 
@@ -23,10 +24,10 @@ public class Launcher extends Input {
 		setTitle("Java Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Window=this;
-		GameState g = new GameState();
-		g.addKeyListener(this);
-		add(g);
-		CurrentState=g;
+		StatePanel panel = new StatePanel();
+		panel.addKeyListener(this);
+		add(panel);
+		StateHandler=panel;
 		addWindowListener(this);
 		setSize(WIDTH, HEIGHT);
 		setLocationRelativeTo(null);
@@ -47,22 +48,12 @@ public class Launcher extends Input {
 		});
 	}
 	public void ChangeState(State s){
-		
-		CurrentState.Stop();
-		PreviousState=CurrentState;
-		CurrentState=s;
-		
+		StateHandler.SwitchState(s);
 	}
 	public boolean IsKeyDown(int keycode){
 		return keys[keycode];
 	}
 	public void NextState(){
-		System.out.println("changing state");
-		if(PreviousState!=null){
-			remove(PreviousState);
-			CurrentState.addKeyListener(this);
-			add(CurrentState);
-			PreviousState=null;
-		}
+		
 	}
 }
