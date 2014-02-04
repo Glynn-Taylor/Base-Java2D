@@ -12,13 +12,41 @@ import apex5.matrix.MatrixGrid;
 
 public abstract class GraphicalState extends State {
 
-	protected void DrawString(Color c, Font font, String text, int x, int y) {
+	final Font DefaultFont = new Font("Arial", Font.PLAIN, 13);
+	
+	private void RenderString(Color c, Font font, String text, int x, int y) {
 		dbg.setColor(c);
 		setHints();
 		dbg.setFont(font);
 		dbg.drawString(text, x, y);
 	}
-
+	protected void DrawString(String text, int x, int y) {
+		RenderString(Color.black, DefaultFont, text, x, y);
+	}
+	protected void DrawString(Color c, String text, int x, int y) {
+		RenderString(c, DefaultFont, text, x, y);
+	}
+	protected void DrawString(Color c, Font font, String text, int x, int y) {
+		RenderString(c, font, text, x, y);
+	}
+	protected void DrawString(Color c, Font font, int text, int x, int y) {
+		RenderString(c, font, Integer.toString(text), x, y);
+	}
+	protected void DrawString(Color c, Font font, float text, int x, int y) {
+		RenderString(c, font, Float.toString(text), x, y);
+	}
+	protected void DrawRectangle(Color c, int x, int y, int width, int height){
+		dbg.setColor(c);
+		dbg.fillRect(x, y, width, height);
+	}
+	protected void DrawRectangleBorder(Color c, int x, int y, int width, int height){
+		dbg.setColor(c);
+		dbg.drawRect(x, y, width, height);
+	}
+	protected void Draw(Color c, int x, int y, int x2, int y2){
+		dbg.setColor(c);
+		dbg.drawLine(x, y, x2, y2);
+	}
 	protected void DrawStrings(Color c, Font font, String[] text, int x, int y,
 			int xOffset, int yOffset) {
 		for (int i = 0; i < text.length; i++) {
