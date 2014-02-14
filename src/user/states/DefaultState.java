@@ -13,7 +13,7 @@ import apex5.states.Launcher;
  CREATED: Oct 8, 2013
  */
 
-public class GameState extends GUIState {
+public class DefaultState extends GUIState {
 
 	Cuboid MoveableSquare = new Cuboid(Color.red, 50,50,20,20);
 	Font StandardFont = new Font("SansSerif", Font.PLAIN, 13);

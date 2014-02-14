@@ -36,7 +36,7 @@ public class MenuState extends GUIState {
 			HideText=!HideText;
 		if(Button(Color.white, ButtonStartX, 150, ButtonWidth, 50, "gamestate")){
 			System.out.println("changing to gamestate");
-			Launcher.Window.ChangeState(new GameState());
+			Launcher.Window.ChangeState(new DefaultState());
 		}
 			
 
@@ -60,7 +60,7 @@ public class MenuState extends GUIState {
 			MoveableSquare.Move(1, 0);
 		
 		if (GetKeyDown(KeyEvent.VK_R))
-			Launcher.Window.ChangeState(new GameState());
+			Launcher.Window.ChangeState(new DefaultState());
 	}
 
 }

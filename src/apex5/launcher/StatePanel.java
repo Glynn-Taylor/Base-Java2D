@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-import user.states.GameState;
+import user.states.DefaultState;
 import apex5.states.Launcher;
 import apex5.states.State;
 
@@ -82,7 +82,7 @@ public class StatePanel extends JPanel implements Runnable {
 	}
 
 	protected void init() {
-		CurrentState = new GameState();
+		CurrentState = new DefaultState();
 		r = new Random();
 		// w = size.width - insets.left - insets.right;
 		// h = size.height - insets.top - insets.bottom;
