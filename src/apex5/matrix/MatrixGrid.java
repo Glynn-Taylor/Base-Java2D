@@ -1,13 +1,10 @@
 package apex5.matrix;
 
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 /*
 	AUTHOR: Glynn Taylor
 	CREATED: Oct 9, 2013
  */
-
-import apex5.states.Launcher;
 
 public class MatrixGrid {
 

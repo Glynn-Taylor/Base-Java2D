@@ -9,10 +9,10 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import user.states.GameState;
-
 import apex5.states.Launcher;
 import apex5.states.State;
 
+@SuppressWarnings("serial")
 public class StatePanel extends JPanel implements Runnable {
 
 	protected Thread StateThread;
@@ -24,6 +24,7 @@ public class StatePanel extends JPanel implements Runnable {
 	private Image dbImage = null;
 
 	private State CurrentState;
+	@SuppressWarnings("unused")
 	private Graphics2D g2;
 
 	protected int getW() {
@@ -97,6 +98,7 @@ public class StatePanel extends JPanel implements Runnable {
 	public void run() {
 		long currentTime = System.currentTimeMillis();
 		long totalTime = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		int ticks = 0;
 		running = true;
 

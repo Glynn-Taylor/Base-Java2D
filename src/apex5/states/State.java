@@ -1,12 +1,8 @@
 package apex5.states;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.Random;
 
-import javax.swing.JPanel;
 
 public abstract class State  {
 	
@@ -25,7 +21,9 @@ public abstract class State  {
 		return h;
 	}
 
-	
+	protected boolean isKeyDown(int c){
+		return Launcher.Window.IsKeyDown(c);
+	}
 
 	public abstract void Render();
 

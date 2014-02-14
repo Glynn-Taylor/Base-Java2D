@@ -2,17 +2,16 @@ package apex5.states;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import user.entity.Entity;
-import user.entity.mob.Cuboid;
-
 import apex5.matrix.MatrixGrid;
 
 public abstract class GraphicalState extends State {
 
-	final Font DefaultFont = new Font("Arial", Font.PLAIN, 13);
+	protected final Font DefaultFont = new Font("Arial", Font.PLAIN, 13);
 	
 	private void RenderString(Color c, Font font, String text, int x, int y) {
 		dbg.setColor(c);
@@ -28,6 +27,14 @@ public abstract class GraphicalState extends State {
 	}
 	protected void DrawString(Color c, Font font, String text, int x, int y) {
 		RenderString(c, font, text, x, y);
+	}
+	protected void DrawStringCentered(Color c, Font font, String text, int x, int y, int width, int height) {
+		FontMetrics fm;
+		fm=dbg.getFontMetrics(font);
+		int centeredY = y+(fm.getAscent() + (height - (fm.getAscent() + fm.getDescent())) / 2);
+		int centeredX = x+(width-fm.stringWidth(text))/2;
+		RenderString(c,font,text,centeredX,centeredY);
+		
 	}
 	protected void DrawString(Color c, Font font, int text, int x, int y) {
 		RenderString(c, font, Integer.toString(text), x, y);

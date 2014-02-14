@@ -8,10 +8,10 @@ package apex5.states;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import user.states.GameState;
 import apex5.launcher.Input;
 import apex5.launcher.StatePanel;
 
+@SuppressWarnings("serial")
 public class Launcher extends Input {
 
 	public static int WIDTH = 700;
@@ -26,6 +26,8 @@ public class Launcher extends Input {
 		Window=this;
 		StatePanel panel = new StatePanel();
 		panel.addKeyListener(this);
+		panel.addMouseListener(this);
+		panel.addMouseMotionListener(this);
 		add(panel);
 		StateHandler=panel;
 		addWindowListener(this);
@@ -56,4 +58,5 @@ public class Launcher extends Input {
 	public void NextState(){
 		
 	}
+
 }

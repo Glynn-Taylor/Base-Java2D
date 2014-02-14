@@ -5,8 +5,7 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 
 import user.entity.mob.Cuboid;
-
-import apex5.states.GraphicalState;
+import apex5.states.GUIState;
 import apex5.states.Launcher;
 
 /*
@@ -14,7 +13,7 @@ import apex5.states.Launcher;
  CREATED: Oct 8, 2013
  */
 
-public class GameState extends GraphicalState {
+public class GameState extends GUIState {
 
 	Cuboid MoveableSquare = new Cuboid(Color.red, 50,50,20,20);
 	Font StandardFont = new Font("SansSerif", Font.PLAIN, 13);
@@ -24,10 +23,11 @@ public class GameState extends GraphicalState {
 
 		FillBackground(Color.black);
 		
+		DrawString(Color.green, StandardFont, "hello world, I'm a square!", 50, 50);
+		
 		DrawEntity(MoveableSquare);
 		
-		DrawString(Color.green, StandardFont, "hello world", 50, 50);
-
+		
 	}
 
 	
@@ -38,7 +38,7 @@ public class GameState extends GraphicalState {
 		if (Launcher.Window.IsKeyDown(KeyEvent.VK_W))
 			MoveableSquare.Move(0, -1);
 		
-		if (Launcher.Window.IsKeyDown(KeyEvent.VK_A))
+		if (isKeyDown(KeyEvent.VK_A))
 			MoveableSquare.Move(-1, 0);
 		
 		if (Launcher.Window.IsKeyDown(KeyEvent.VK_S))
@@ -47,8 +47,12 @@ public class GameState extends GraphicalState {
 		if (Launcher.Window.IsKeyDown(KeyEvent.VK_D))
 			MoveableSquare.Move(1, 0);
 		
-		if (Launcher.Window.IsKeyDown(KeyEvent.VK_R))
-			Launcher.Window.ChangeState(new GameState());
+		if (GetKeyDown(KeyEvent.VK_R))
+			Launcher.Window.ChangeState(new MenuState());
 	}
+
+
+
+	
 
 }
