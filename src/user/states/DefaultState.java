@@ -35,16 +35,16 @@ public class DefaultState extends GUIState {
 	@Override
 	public void Update() {
 		
-		if (Launcher.Window.IsKeyDown(KeyEvent.VK_W))
+		if (isKeyDown(KeyEvent.VK_W))
 			MoveableSquare.Move(0, -1);
 		
 		if (isKeyDown(KeyEvent.VK_A))
 			MoveableSquare.Move(-1, 0);
 		
-		if (Launcher.Window.IsKeyDown(KeyEvent.VK_S))
+		if (isKeyDown(KeyEvent.VK_S))
 			MoveableSquare.Move(0, 1);
 		
-		if (Launcher.Window.IsKeyDown(KeyEvent.VK_D))
+		if (isKeyDown(KeyEvent.VK_D))
 			MoveableSquare.Move(1, 0);
 		
 		if (GetKeyDown(KeyEvent.VK_R))
