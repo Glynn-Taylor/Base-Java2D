@@ -6,12 +6,14 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import user.entity.Entity;
+import apex5.entity.Entity;
 import apex5.matrix.MatrixGrid;
+import apex5.sprite.Sprite2D;
 
 public abstract class GraphicalState extends State {
 
 	protected final Font DefaultFont = new Font("Arial", Font.PLAIN, 13);
+	
 	
 	private void RenderString(Color c, Font font, String text, int x, int y) {
 		dbg.setColor(c);
@@ -22,6 +24,7 @@ public abstract class GraphicalState extends State {
 	protected void DrawString(String text, int x, int y) {
 		RenderString(Color.black, DefaultFont, text, x, y);
 	}
+	
 	protected void DrawString(Color c, String text, int x, int y) {
 		RenderString(c, DefaultFont, text, x, y);
 	}
@@ -49,6 +52,9 @@ public abstract class GraphicalState extends State {
 	protected void DrawRectangleBorder(Color c, int x, int y, int width, int height){
 		dbg.setColor(c);
 		dbg.drawRect(x, y, width, height);
+	}
+	protected void DrawSprite(Sprite2D sprite, int x, int y, int w, int h) {
+		sprite.render(dbg,x,y,w,h);
 	}
 	protected void Draw(Color c, int x, int y, int x2, int y2){
 		dbg.setColor(c);

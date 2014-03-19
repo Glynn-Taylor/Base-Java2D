@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 
 import user.entity.mob.Cuboid;
+import apex5.launcher.Launcher;
+import apex5.sprite.ResourceManager;
+import apex5.sprite.Sprite2D;
 import apex5.states.GUIState;
-import apex5.states.Launcher;
 
 /*
  AUTHOR: Glynn Taylor
@@ -17,7 +19,7 @@ public class DefaultState extends GUIState {
 
 	Cuboid MoveableSquare = new Cuboid(Color.red, 50,50,20,20);
 	Font StandardFont = new Font("SansSerif", Font.PLAIN, 13);
-
+	Sprite2D TestImage = ResourceManager.getInstance().loadSpriteMap("test.png", new String[]{"anim1"}, 3, 60);
 	@Override
 	public void Render() {
 
@@ -26,7 +28,7 @@ public class DefaultState extends GUIState {
 		DrawString(Color.green, StandardFont, "hello world, I'm a square!", 50, 50);
 		
 		DrawEntity(MoveableSquare);
-		
+		DrawSprite(TestImage, 50, 50, 100,100);
 		
 	}
 
@@ -34,7 +36,7 @@ public class DefaultState extends GUIState {
 
 	@Override
 	public void Update() {
-		
+		TestImage.Tick();
 		if (isKeyDown(KeyEvent.VK_W))
 			MoveableSquare.Move(0, -1);
 		

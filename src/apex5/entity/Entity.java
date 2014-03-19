@@ -1,4 +1,4 @@
-package user.entity;
+package apex5.entity;
 
 import java.awt.Graphics2D;
 import java.awt.Point;

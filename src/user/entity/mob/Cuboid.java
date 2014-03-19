@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import user.entity.Entity;
+import apex5.entity.Entity;
 
 public class Cuboid extends Entity{
 	Color colour;

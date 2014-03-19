@@ -2,6 +2,8 @@ package apex5.states;
 
 import java.awt.Color;
 
+import apex5.launcher.Launcher;
+
 public abstract class GUIState extends GraphicalState {
 
 	protected boolean Button(Color c, int x, int y, int width, int height, String s){

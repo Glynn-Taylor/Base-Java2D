@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 
 import user.entity.mob.Cuboid;
+import apex5.launcher.Launcher;
 import apex5.states.GUIState;
-import apex5.states.Launcher;
 
 /*
  AUTHOR: Glynn Taylor

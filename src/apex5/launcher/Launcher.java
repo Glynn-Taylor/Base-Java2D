@@ -1,4 +1,4 @@
-package apex5.states;
+package apex5.launcher;
 
 /*
  AUTHOR: Glynn Taylor
@@ -8,8 +8,7 @@ package apex5.states;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import apex5.launcher.Input;
-import apex5.launcher.StatePanel;
+import apex5.states.State;
 
 @SuppressWarnings("serial")
 public class Launcher extends Input {

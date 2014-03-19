@@ -1,0 +1,20 @@
+Features and shiz
+-----------------
+o)quadtree for space partitioning
+o)collision detection algorithms for AABB/AABB, AABB/OBB, OBB/OBB, Ray/Ray, Ray/AABB, Ray/OBB (based on SAT)
+o)Custom settings file parser (this is super ugly, but hey it's there and easy to use)
+o)Content management. Load textures/soundfiles/shaders/everything through one generic class.
+	Easily extensible (custom loaders) using template specialization.
+o)gamestate managament. transitions between gamestates, have multiple gamestate running at once 
+	(render everything, update and respond to input only in "top gamestates" and features like that)
+o)renderer that centralizes all drawing and does some basic optimizations, but can also do dynamic 2d hard-shadows 
+	(with an arbitrary number of light sources).
+o)path finding using A*.
+o)animation system (simple spritesheet based keyframe animations)
+o)camera system
+o)math utilities (mostly stuff for 2d vectors, but also things like fast inverse sqrt in there)
+o)ingame console (you can type lua-script one-liners in it and it will execute it. you still have to bind your code to lua manually, though)
+o)entity/component system.
+o)tilemap engine. you can construct tilemaps with the TILED map editor and load it with the tilemap engine.
+	 you can give tiles properties that match properties in the engine, like "solid" which makes the tile collide with things,
+	 you can give tiles scripts to execute on collision, etc.

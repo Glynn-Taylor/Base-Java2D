@@ -4,24 +4,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import javax.swing.JPanel;
 
 import user.states.DefaultState;
-import apex5.states.Launcher;
 import apex5.states.State;
 
 @SuppressWarnings("serial")
 public class StatePanel extends JPanel implements Runnable {
 
 	protected Thread StateThread;
-
+	private static int UPDATE_LOCK=60;
 	private int w, h;
 	private boolean running = false;;
 	protected Random r;
 	protected Graphics dbg;
-	private Image dbImage = null;
+	private BufferedImage dbImage = null;
 
 	private State CurrentState;
 	@SuppressWarnings("unused")
@@ -40,7 +40,7 @@ public class StatePanel extends JPanel implements Runnable {
 
 	private void RenderPanel() {
 		if (dbImage == null) {
-			dbImage = createImage(w, h);
+			dbImage = (BufferedImage) createImage(w, h);
 			if (dbImage == null) {
 
 				System.out.println("dbImage is null: " + Integer.toString(w)
@@ -51,7 +51,7 @@ public class StatePanel extends JPanel implements Runnable {
 
 				dbg = dbImage.getGraphics();
 				g2 = (Graphics2D) dbg;
-				CurrentState.init(dbg);
+				CurrentState.init(dbg, dbImage);
 			}
 		}
 
@@ -96,27 +96,44 @@ public class StatePanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		long currentTime = System.currentTimeMillis();
-		long totalTime = System.currentTimeMillis();
-		@SuppressWarnings("unused")
+		long lastTime = System.nanoTime();
+		double unprocessed = 0;
+		double nsPerTick = 1000000000.0 / (double)UPDATE_LOCK;
+		int frames = 0;
+		long lastTimer = System.currentTimeMillis();
+		//long currentTime = System.currentTimeMillis();
+		//long totalTime = System.currentTimeMillis();
 		int ticks = 0;
 		running = true;
 
 		while (running) {
-
-			CurrentState.Update();
-			RenderPanel();
-
-			try {
-				Thread.sleep(10);
-			} catch (Exception e) {
-
+			long now = System.nanoTime();
+			unprocessed += (now - lastTime) / nsPerTick;
+			lastTime = now;
+			boolean shouldRender = true;
+			
+			while (unprocessed >= 1) {
+				ticks++;
+				CurrentState.Update();
+				unprocessed -= 1;
+				shouldRender = true;
 			}
-			ticks += 1;
-			totalTime = System.currentTimeMillis();
-			if (totalTime - currentTime > 1000) {
-				currentTime = totalTime;
-				// FPS=ticks;
+			
+			try {
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (shouldRender) {
+				frames++;
+				RenderPanel();
+			}
+			
+
+			if (System.currentTimeMillis() - lastTimer > 1000) {
+				lastTimer += 1000;
+				System.out.println(ticks + " ticks, " + frames + " fps");
+				frames = 0;
 				ticks = 0;
 			}
 		}
@@ -149,7 +166,7 @@ public class StatePanel extends JPanel implements Runnable {
 
 	public void SwitchState(State s) {
 		CurrentState=s;
-		CurrentState.init(dbg);
+		CurrentState.init(dbg,dbImage);
 		
 	}
 
